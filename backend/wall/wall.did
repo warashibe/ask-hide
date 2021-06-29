@@ -1,0 +1,19 @@
+type Answer = record{
+  "user": principal;
+  "text": text;
+};
+
+type Post = record {
+    "id": text;
+    "user": principal;
+    "question": text;
+    "answers": vec Answer;
+};
+
+service : {
+  "get": () ->(vec Post) query;
+  "write": (question: text) -> ();
+  "get_question": (questionId: text) -> (Post) query;
+  "clear_data": () -> ();
+  "add_answer": (answer: text, question_id: text) -> ();
+}
