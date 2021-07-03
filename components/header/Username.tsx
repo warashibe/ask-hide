@@ -15,6 +15,5 @@ export default function Component() {
         {result.payload.name}
       </div>
     );
-
   return null;
 }

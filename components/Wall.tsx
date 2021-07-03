@@ -34,7 +34,7 @@ export default function Component() {
               </li>
             </a>
             </Link>
-            <Userinfo principal={post.user} />
+            <Userinfo user={post.user} />
           </div>
         ))}
         </ul>

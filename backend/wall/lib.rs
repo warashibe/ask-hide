@@ -1,7 +1,4 @@
-use ic_cdk::export::{
-    candid::{CandidType, Deserialize},
-    Principal,
-};
+use ic_cdk::export::candid::{CandidType, Deserialize};
 use ic_cdk::*;
 use ic_cdk_macros::*;
 use sha2::{Digest, Sha256};
@@ -10,14 +7,16 @@ type Wall = Vec<Post>;
 
 #[derive(Clone, Debug, CandidType, Deserialize)]
 struct Answer {
-    pub user: Principal,
+    pub user: String,
+    pub ethAddress: String,
     pub text: String,
 }
 
 #[derive(Clone, Debug, CandidType, Deserialize)]
 struct Post {
     pub id: String,
-    pub user: Principal,
+    pub user: String,
+    pub ethAddress: String,
     pub question: String,
     pub answers: Vec<Answer>,
 }
@@ -51,7 +50,8 @@ fn get_question(question_id: String) -> Post {
     }
     let void_post = Post {
         id: String::new(),
-        user: ic_cdk::caller(),
+        user: String::new(),
+        ethAddress: String::new(),
         question: String::new(),
         answers: Vec::new(),
     };
@@ -65,7 +65,8 @@ fn get_null_post() -> Post {
     let text = "".to_string();
     let post = Post {
         id: idnew,
-        user: principal_id,
+        user: text.clone(),
+        ethAddress: text.clone(),
         question: text,
         answers,
     };
@@ -73,13 +74,14 @@ fn get_null_post() -> Post {
 }
 
 #[update]
-fn write(input: String) -> String {
+fn write(input: String, name: String, ethAddress: String) -> String {
     let principal_id = ic_cdk::caller();
     let answers = Vec::new();
     let idnew = get_id(&input);
     let post = Post {
         id: idnew.clone(),
-        user: principal_id,
+        user: name,
+        ethAddress: ethAddress,
         question: input.clone(),
         answers: answers,
     };
@@ -90,10 +92,11 @@ fn write(input: String) -> String {
 }
 
 #[update]
-fn add_answer(text: String, question_id: String) -> () {
+fn add_answer(text: String, name: String, ethAddress: String, question_id: String) -> () {
     let principal_id = ic_cdk::caller();
     let answer = Answer {
-        user: principal_id,
+        user: name,
+        ethAddress: ethAddress,
         text,
     };
     let wall = storage::get_mut::<Wall>();

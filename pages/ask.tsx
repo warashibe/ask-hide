@@ -32,19 +32,7 @@ export default function ask() {
           <div className="pt-40 pb-20 bg-right-top bg-no-repeat bg-contain sm:pb-32">
             <div className="text-xl wall-container">
               <div className="mb-3 ml-2s text-xl">Input Question</div>
-              {isConnected(connector) && (
-                <>
-                  <SetUsername />
                   <Post />
-                </>
-              )}
-              {!isConnected(connector) && (
-                <div className="mb-10 text-3xl text-center">
-                  Connect
-                  <MetamaskIcon className="inline-block w-8 h-8 mx-2" />
-                  to write question!
-                </div>
-              )}
             </div>
           </div>
         </div>

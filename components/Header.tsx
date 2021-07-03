@@ -57,45 +57,10 @@ export default function Component() {
             <div className="hidden sm:block sm:ml-6 sm:w-full ">
               <div className="flex items-center justify-end h-full">
                 <div>
-                  <AskBtn />
-                  <UserName/>
-                  {triedEager && (!connected || (connected && !!ethError)) && (
-                    <button
-                      className={ethButtonClass}
-                      disabled={connectDisabled || !!ethError || activating}
-                      key={"Injected"}
-                      onClick={() => {
-                        setActivatingConnector(injected);
-                        ethActivate(injected, (error) => {
-                          if (error.name === "UnsupportedChainIdError")
-                            alert("Please connect to Ethereum mainnet");
-                          setActivatingConnector(undefined);
-                        });
-                      }}
-                    >
-                      {!ethError && activating && <div>Initializing …</div>}
-                      {!ethError && !activating && (
-                        <div>
-                          <MetamaskIcon className="inline-block w-4 h-4 pb-1 mr-2" />
-                          Connect to wallet:-)
-                        </div>
-                      )}
-                      {ethError &&
-                        ethError.name === "UnsupportedChainIdError" && (
-                          <div>Wrong network</div>
-                        )}
-                      {ethError &&
-                        ethError.name !== "UnsupportedChainIdError" && (
-                          <div>Unable to connect</div>
-                        )}
-                    </button>
-                  )}
-                  
+                  <AskBtn />                  
                   <EthAccount />
-                  
                 </div>
               </div>
-              
             </div>
           </div>
         </div>
