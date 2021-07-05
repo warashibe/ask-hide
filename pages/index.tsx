@@ -29,7 +29,11 @@ export default function Home() {
       <main>
         <img src="ask.png"/>
         <div className="text-center">
-          ASK Hide for everyone. Find solution or ask a question!
+          ASK Hide for everyone. Find solution or ask a question!<br/>
+        </div>
+        <div className="text-center text-red-500">
+        <br/><br/>This is on Difinity!!<br/>
+          ベーター運用中。データーが消える可能性があることをご了承ください
         </div>
         <div className="pt-10 pb-10 bg-right-top bg-no-repeat bg-contain sm:pb-32">
           <div className="text-xl wall-container">            

@@ -52,7 +52,7 @@ export default function Component() {
         <div className="relative flex items-center justify-between">
           <div className="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
             <div className="flex items-center flex-shrink-0 text-3xl font-bold text-blue-500 ">
-                <Link href="/">ASK HiÐΞ</Link>
+                <Link href="/">ASK HiÐΞ β　on Dfinity</Link>
             </div>
             <div className="hidden sm:block sm:ml-6 sm:w-full ">
               <div className="flex items-center justify-end h-full">

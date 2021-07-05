@@ -13,7 +13,9 @@
       "type": "custom"
     },
     "ui": {
-      "source": ["out"],
+      "source": [
+        "out"
+      ],
       "type": "assets"
     }
   },
@@ -23,6 +25,6 @@
       "type": "ephemeral"
     }
   },
-  "dfx": "0.7.1",
+  "dfx": "0.7.2",
   "version": 1
 }

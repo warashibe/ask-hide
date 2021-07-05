@@ -57,7 +57,7 @@ export default function Component({id}: Props)
             ))}
         </div>
         <div className ="pb-4">
-          <PostAnswer id={id} fn={get_questions}/>
+          <PostAnswer id={id}/>
         </div>
       </div>
     );

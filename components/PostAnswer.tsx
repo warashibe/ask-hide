@@ -8,10 +8,9 @@ import { useWeb3React } from "@web3-react/core";
 
 interface Props {
   id: string;
-  fn: Function;
   }
 
-export default function Component({id, fn}: Props) 
+export default function Component({id}: Props) 
 {
   const { actors, principal } = useInternetComputer();
   const [profileFinished, profileResult] = getUserProfile.useBeckon({

@@ -1,11 +1,11 @@
 {
-  "name": "ic-wall",
-  "version": "0.0.1",
+  "name": "ask-hide",
+  "version": "0.1.0",
   "private": true,
-  "description": "Proof of concept - Use Metamask to login to Internet Computer",
+  "description": "ASK-HiDE Experimental QA site on IC",
   "author": {
-    "name": "Kristofer Lund",
-    "email": "kristofer@fmckl.se",
+    "name": "haruxx",
+    "email": "harukatarotaro@gmail.com",
     "url": "https://github.com/kristoferlund"
   },
   "license": "MIT",
@@ -25,6 +25,7 @@
     "@web3-react/core": "latest",
     "@web3-react/injected-connector": "latest",
     "ethers": "^5.1.4",
+    "fuse.js": "^6.4.6",
     "linkifyjs": "^3.0.0-beta.3",
     "next": "10.1.3",
     "pullstate": "^1.22.1",
@@ -40,7 +41,7 @@
     "@types/react": "^17.0.4",
     "autoprefixer": "^10.2.5",
     "postcss": "^8.2.8",
-    "tailwindcss": "^2.0.4",
+    "tailwindcss": "^2.2.4",
     "typescript": "^4.2.4"
   }
 }

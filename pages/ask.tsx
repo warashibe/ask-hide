@@ -28,6 +28,11 @@ export default function ask() {
 
       <main>
         <br/><div className="h2 text-center text-4xl"> AKS QUESTION </div>
+        <div className="text-center text-red-500">
+        <br/><br/>This is on Difinity!!<br/>
+          ベーター運用中。データーが消える可能性があることをご了承ください
+        </div>
+
         <div className="w-full leading-normal text-black">
           <div className="pt-40 pb-20 bg-right-top bg-no-repeat bg-contain sm:pb-32">
             <div className="text-xl wall-container">

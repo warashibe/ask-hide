@@ -1,6 +1,8 @@
 ## ASK HiDE
 
-This program developped based by https://github.com/kristoferlund/ic-wall Thanks to Kristofer Lund, kristofer@fmckl.se. Really helpful to understand ICP and Ethereum connections with React/NEXT envirement
+This program developped based by 
+
+ Thanks to Kristofer Lund, kristofer@fmckl.se. Really helpful to understand ICP and Ethereum connections with React/NEXT envirement
 
 ## Purpose
 
