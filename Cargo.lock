@@ -452,9 +452,9 @@ dependencies = [
 
 [[package]]
 name = "ic-cdk"
-version = "0.2.4"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ae261fe701ff53bf985840749a67da01beb89c8bdb7a7d8fedbd772c72556ea8"
+checksum = "6f385e97263deb4469938ba1bbbb0a0259294132ca2523e20a971225571d5485"
 dependencies = [
  "candid",
  "cfg-if 0.1.10",
@@ -464,9 +464,9 @@ dependencies = [
 
 [[package]]
 name = "ic-cdk-macros"
-version = "0.2.4"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d18985bb2a060d6d3ff052812b1067ed7e989088369a98c24ffd3de08b14030b"
+checksum = "5233d71766be2c74f3433a51b8d4a584f8b416a87a961ce0e579110bc30aa683"
 dependencies = [
  "candid",
  "ic-cdk",
@@ -1101,7 +1101,7 @@ checksum = "f7fe0bb3479651439c9112f72b6c505038574c9fbb575ed1bf3b797fa39dd564"
 
 [[package]]
 name = "user_profile"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "easy-hasher",
  "hex",
@@ -1127,7 +1127,7 @@ checksum = "5fecdca9a5291cc2b8dcf7dc02453fee791a280f3743cb0905f8822ae463b3fe"
 
 [[package]]
 name = "wall"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "base64 0.9.3",
  "ic-cdk",

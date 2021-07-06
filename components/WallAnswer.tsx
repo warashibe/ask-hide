@@ -1,5 +1,5 @@
 import React from "react";
-import { getQuestion } from "@/store/actions/question";
+import { getQuestion } from "@/store/actions/wall";
 import { createAnonymousActors } from "@/ic/actor";
 import  PostAnswer from "@/components/PostAnswer";
 import Linkify from "linkifyjs/react";

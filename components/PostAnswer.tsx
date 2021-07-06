@@ -1,8 +1,5 @@
 import React from "react";
-import { useInternetComputer } from "@/ic/context";
-import { Post } from "@/ic/generated/wall/wall";
-import { getUserProfile } from "@/store/actions/profile";
-import { getWall } from "@/store/actions/wall";
+import { createAnonymousActors } from "@/ic/actor";
 import Spinner from "@/components/Spinner";
 import { useWeb3React } from "@web3-react/core";
 
@@ -12,11 +9,7 @@ interface Props {
 
 export default function Component({id}: Props) 
 {
-  const { actors, principal } = useInternetComputer();
-  const [profileFinished, profileResult] = getUserProfile.useBeckon({
-    actors,
-    principal,
-  });
+  const  actors = createAnonymousActors();
   const { account } = useWeb3React();
 
   const [post, setPost] = React.useState("");

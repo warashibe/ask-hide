@@ -1,7 +1,7 @@
 [package]
 name = "user_profile"
-version = "0.0.1"
-authors = ["Kristofer Lund <kristofer@fmckl.se>"]
+version = "0.1.0"
+authors = ["haruxx <harukatarotaro@gmail.com>"]
 edition = "2018"
 
 [lib]
@@ -9,8 +9,8 @@ path = "lib.rs"
 crate-type = ["cdylib"]
 
 [dependencies]
-ic-cdk = "0.2.4"
-ic-cdk-macros = "0.2.4"
+ic-cdk = "0.3.0"
+ic-cdk-macros = "0.3.0"
 ic-types = "0.1.1"
 lazy_static = "1.4.0"
 serde = "1.0.111"

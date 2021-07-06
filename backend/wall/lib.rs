@@ -8,7 +8,7 @@ type Wall = Vec<Post>;
 #[derive(Clone, Debug, CandidType, Deserialize)]
 struct Answer {
     pub user: String,
-    pub ethAddress: String,
+    pub eth_address: String,
     pub text: String,
 }
 
@@ -16,13 +16,9 @@ struct Answer {
 struct Post {
     pub id: String,
     pub user: String,
-    pub ethAddress: String,
+    pub eth_address: String,
     pub question: String,
     pub answers: Vec<Answer>,
-}
-
-fn to_string(src: &[u8]) -> String {
-    src.into_iter().map(|val| format!("{:0>2x}", val)).collect()
 }
 
 fn get_id(now_str: &String) -> String {
@@ -51,37 +47,21 @@ fn get_question(question_id: String) -> Post {
     let void_post = Post {
         id: String::new(),
         user: String::new(),
-        ethAddress: String::new(),
+        eth_address: String::new(),
         question: String::new(),
         answers: Vec::new(),
     };
     void_post
 }
 
-fn get_null_post() -> Post {
-    let principal_id = ic_cdk::caller();
-    let answers = Vec::new();
-    let idnew = "0".to_string();
-    let text = "".to_string();
-    let post = Post {
-        id: idnew,
-        user: text.clone(),
-        ethAddress: text.clone(),
-        question: text,
-        answers,
-    };
-    post
-}
-
 #[update]
-fn write(input: String, name: String, ethAddress: String) -> String {
-    let principal_id = ic_cdk::caller();
+fn write(input: String, name: String, eth_address: String) -> String {
     let answers = Vec::new();
     let idnew = get_id(&input);
     let post = Post {
         id: idnew.clone(),
         user: name,
-        ethAddress: ethAddress,
+        eth_address: eth_address,
         question: input.clone(),
         answers: answers,
     };
@@ -92,11 +72,10 @@ fn write(input: String, name: String, ethAddress: String) -> String {
 }
 
 #[update]
-fn add_answer(text: String, name: String, ethAddress: String, question_id: String) -> () {
-    let principal_id = ic_cdk::caller();
+fn add_answer(text: String, name: String, eth_address: String, question_id: String) -> () {
     let answer = Answer {
         user: name,
-        ethAddress: ethAddress,
+        eth_address: eth_address,
         text,
     };
     let wall = storage::get_mut::<Wall>();

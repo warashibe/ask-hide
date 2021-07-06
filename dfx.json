@@ -16,6 +16,10 @@
       "source": [
         "out"
       ],
+      "dependencies": [
+        "wall",
+        "profile"
+      ],
       "type": "assets"
     }
   },

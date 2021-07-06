@@ -1,16 +1,11 @@
 import React from "react";
-import { useInternetComputer } from "@/ic/context";
 import Spinner from "@/components/Spinner";
 import { useWeb3React } from "@web3-react/core";
-import { getUserProfile } from "@/store/actions/profile";
 import router from "next/router";
+import { createAnonymousActors } from "@/ic/actor";
 
 export default function Component() {
-  const { actors, principal } = useInternetComputer();
-  // const [profileFinished, profileResult] = getUserProfile.useBeckon({
-  //   actors,
-  //   principal,
-  // });
+  const actors = createAnonymousActors();
   const { account } = useWeb3React();
 
   const [post, setPost] = React.useState("");
@@ -53,8 +48,6 @@ export default function Component() {
     actors.wall
       .write(post, name, accountInput)
       .then(() => {
-        actors.wall.get().then((resp: string) => {
-        });
         setSuccess(true);
         router.push("/");
       })

@@ -1,8 +1,8 @@
 ## ASK HiDE
 
-This program developped based by 
+This program developped based by haruxx
 
- Thanks to Kristofer Lund, kristofer@fmckl.se. Really helpful to understand ICP and Ethereum connections with React/NEXT envirement
+Thanks to Kristofer Lund, kristofer@fmckl.se. Really helpful to understand ICP and Ethereum connections with React/NEXT envirement
 
 ## Purpose
 
