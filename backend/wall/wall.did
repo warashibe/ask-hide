@@ -16,6 +16,5 @@ service : {
   "get": () ->(vec Post) query;
   "write": (question: text, name: text, eth_address: text) -> (text);
   "get_question": (questionId: text) -> (Post) query;
-  "clear_data": () -> ();
   "add_answer": (answer: text, name: text, eth_address: text, question_id: text) -> ();
 }

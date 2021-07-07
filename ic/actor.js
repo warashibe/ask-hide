@@ -1,5 +1,4 @@
 import { Actor, HttpAgent } from "@dfinity/agent";
-import * as profile from "@/ic/generated/profile/profile";
 import * as wall from "@/ic/generated/wall/wall";
 
 export function createActors(identity) {
@@ -11,10 +10,6 @@ export function createActors(identity) {
     agent.fetchRootKey();
   }
   const actors = {
-    profile: Actor.createActor(profile.idlFactory, {
-      agent,
-      canisterId: profile.canisterId,
-    }),
     wall: Actor.createActor(wall.idlFactory, {
       agent,
       canisterId: wall.canisterId,
@@ -31,10 +26,6 @@ export function createAnonymousActors() {
     agent.fetchRootKey();
   }
   const actors = {
-    profile: Actor.createActor(profile.idlFactory, {
-      agent,
-      canisterId: profile.canisterId,
-    }),
     wall: Actor.createActor(wall.idlFactory, {
       agent,
       canisterId: wall.canisterId,
@@ -51,5 +42,4 @@ export function createAnonymousActors() {
 // eth address.
 export function linkAddress(identity, loginMessageHash, signature) {
   const actors = createActors(identity);
-  actors.profile.linkAddress(loginMessageHash, signature);
 }

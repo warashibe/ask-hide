@@ -3,6 +3,7 @@ import Spinner from "@/components/Spinner";
 import { useWeb3React } from "@web3-react/core";
 import router from "next/router";
 import { createAnonymousActors } from "@/ic/actor";
+import EthAccount from "@/components/EthAccount";
 
 export default function Component() {
   const actors = createAnonymousActors();
@@ -67,29 +68,37 @@ export default function Component() {
         onChange={handlePostChange}
         value={post}
       ></textarea>
-     <div className="flex items-center justify-start h-full">
+     <div className="flex items-center h-full">
       <textarea className="w-50 h-10 mb-5 px-2 py-1 text-gray-700 placeholder-gray-600 border rounded-sm focus:shadow-outline flex-none"
         placeholder=" Write name"
         disabled={loading}
         onChange={handleNameChange}
         value={name}
       ></textarea>
+      </div>
       {(account) &&(
-        <label htmlFor="useEthAddressCheckBox" className="mb-5 px-7">
-          Add Ethereum Address
-          <input
-            className = "mb-1 w-5 h-5 ml-3"
+        <div>
+          <div className= "flex">
+            <input
+            className = "w-4 h-4 items-center"
             type="checkbox"
             value="contain Eth Address"
             name = "useEthAddressCheckBox"
             checked = {useEthAdd}
             onChange ={handleCheckBoxChange}
-        ></input>
-         </label>)
+            />
+            <label htmlFor="useEthAddressCheckBox" className="items-center text-sm ml-3">
+              Add Ethereum Address as your identity
+            </label>
+          </div>
+          <div>
+            <EthAccount />          
+          </div>
+         </div>
+         )
       }
-      </div>
       <button onClick={handleSubmit}
-          className=" w-full mb-10 mt-5 p-4 px-8 text-xl font-semibold text-blue-900 uppercase bg-blue-300 rounded-sm hover:bg-yellow-200 disabled:opacity-50"
+          className=" w-2/3 mb-10 p-4 text-xl text-white uppercase border border-blue-500 bg-blue-500 rounded-sm hover:bg-white hover:text-blue-500 disabled:opacity-50 flex mx-auto"
           type="submit"
           disabled={loading}
       > {loading ? (
@@ -104,7 +113,7 @@ export default function Component() {
           <span className="text-red-500">🤖 Error</span>
         )
       ) : (
-        "Send"
+        <div className="flex mx-auto">Send</div>
       )}
       </button>
     </div>

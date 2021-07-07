@@ -1,11 +1,5 @@
 {
   "canisters": {
-    "profile": {
-      "build": "make user_profile",
-      "candid": "backend/user_profile/user_profile.did",
-      "wasm": "target/wasm32-unknown-unknown/release/user_profile_opt.wasm",
-      "type": "custom"
-    },
     "wall": {
       "build": "make wall",
       "candid": "backend/wall/wall.did",
@@ -16,9 +10,11 @@
       "source": [
         "out"
       ],
+      "frontend": {
+        "entrypoint": "out/index.html"
+      },
       "dependencies": [
-        "wall",
-        "profile"
+        "wall"
       ],
       "type": "assets"
     }

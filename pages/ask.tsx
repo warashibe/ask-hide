@@ -1,22 +1,11 @@
 import React from "react";
 import Head from "next/head";
-
-import { useInternetComputer } from "@/ic/context";
 import Post from "@/components/Post"
 import Header from "@/components/Header";
-import SetUsername from "@/components/SetUsername";
-import { useWeb3React } from "@web3-react/core";
-import { isConnected } from "@/eth/connectors";
-import toast, { Toaster } from "react-hot-toast";
-import MetamaskIcon from "@/svg/metamask.svg";
-import DfinityIcon from "@/svg/dfinity.svg";
 
 export default function ask() {
-  const { principal } = useInternetComputer();
-  const { connector } = useWeb3React();
 
   if (typeof window === "undefined") return null;
-
 
   return (
     <div className="bg-white-500">
@@ -27,20 +16,16 @@ export default function ask() {
       <Header />
 
       <main>
-        <br/><div className="h2 text-center text-4xl"> AKS QUESTION </div>
-        <div className="text-center text-red-500">
-        <br/><br/>This is on Difinity!!<br/>
-          ベーター運用中。データーが消える可能性があることをご了承ください
+      <div className="text-center text-red-500 m-2">
+          ベーター運用中
         </div>
-
+        <div className="h2 text-center text-2xl mb-5"> きいてみよう </div>
         <div className="w-full leading-normal text-black">
-          <div className="pt-40 pb-20 bg-right-top bg-no-repeat bg-contain sm:pb-32">
             <div className="text-xl wall-container">
-              <div className="mb-3 ml-2s text-xl">Input Question</div>
+              <div className="mb-3 ml-2s text-sm">質問は？</div>
                   <Post />
             </div>
           </div>
-        </div>
       </main>
     </div>
   );

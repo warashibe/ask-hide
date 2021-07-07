@@ -3,7 +3,7 @@ import { getQuestion } from "@/store/actions/wall";
 import { createAnonymousActors } from "@/ic/actor";
 import  PostAnswer from "@/components/PostAnswer";
 import Linkify from "linkifyjs/react";
-import Userinfo from "@/components/wall/Userinfo";
+import Userinfo from "@/components/Userinfo";
 
 interface Props 
 {
@@ -27,32 +27,30 @@ export default function Component({id}: Props)
     );
   }
 
-  function get_questions(){
-    let [finished, result] = getQuestion.useBeckon({ actors, questionId:id});
-    Question = result?.payload;
-  }
-
-
   if(Question.answers.length !== 0)
   {
     return (
       <div>
-        <div className="pb-3">
-          Question:<br/>
-          <div className="p-5 mb-2 overflow-hidden text-black bg-gray-100 rounded-sm">
+        <div className="pb-10">
+          <hr/>
+          <div className="overflow-hidden text-black bg-gray-100 rounded-sm">
             {Question.question}
           </div>
+          <hr/>
+          <Userinfo name={Question.user} address={Question.eth_address} />
         </div>
-        <div className="pb-4">
-          Answers:<br/>
+        <div className="pb-4 mb-2">
+          <div className="text-xs font-bold">
+          {Question.answers.length}個の回答<br/>
+          </div>
           {Question.answers
             .slice()
             .map((answer) => (
               <div className="mb-5 text-left">
-                <div className="p-5 mb-2 overflow-hidden text-black bg-gray-200 rounded-sm">
+                <div className="p-2 mb-2 overflow-hidden text-black border border-black-300 roundec-sm  text-xs">
                       <a>{answer.text}</a>
                 </div>
-                <Userinfo user={answer.user} />
+                <Userinfo name={answer.user} address={answer.eth_address} />
               </div>
             ))}
         </div>
@@ -66,14 +64,17 @@ export default function Component({id}: Props)
   {
     return (
     <div>
-      <div className="pb-3">
-        Question:<br/>
-        <div className="p-5 mb-2 overflow-hidden text-black bg-gray-100 rounded-sm">
+      <div className="pb-5">
+        <hr/>
+        <div className="p-3 overflow-hidden text-black">
           {Question.question}
         </div>
+        <hr/>
       </div>
+      
       <div className="pb-4">
         no answers..
+        <hr/>
       </div>
         <div className ="pb-4">
           <PostAnswer id={id}/>

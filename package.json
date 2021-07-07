@@ -5,8 +5,7 @@
   "description": "ASK-HiDE Experimental QA site on IC",
   "author": {
     "name": "haruxx",
-    "email": "harukatarotaro@gmail.com",
-    "url": "https://github.com/kristoferlund"
+    "email": "harukatarotaro@gmail.com"
   },
   "license": "MIT",
   "scripts": {
@@ -15,7 +14,7 @@
     "start": "next start",
     "export": "npm run clean && npm run build && next export",
     "clean": "rm -rf .next out",
-    "all": "dfx deploy profile && dfx deploy wall && npm rum export && dfx deploy ui"
+    "all": "dfx deploy wall && npm rum export && dfx deploy ui"
   },
   "dependencies": {
     "@dfinity/agent": "^0.9.0",

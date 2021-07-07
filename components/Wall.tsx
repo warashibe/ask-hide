@@ -2,13 +2,19 @@ import React from "react";
 import { getWall } from "@/store/actions/wall";
 import { createAnonymousActors } from "@/ic/actor";
 import Linkify from "linkifyjs/react";
-import Userinfo from "@/components/wall/Userinfo";
+import Userinfo from "@/components/Userinfo";
 import Link from "next/link";
+import Fuse from "fuse.js";
 
-export default function Component() {
+interface Props {
+  search: string;
+  }
+
+export default function Component({search} : Props) {
   const actors = createAnonymousActors();
   const [finished, result] = getWall.useBeckon({ actors });
   const wall = result?.payload;
+  const MAXLINE = 20;
 
   if (!finished) return <div>Loading…</div>;
   if (!wall) return <div>Error</div>;
@@ -19,25 +25,71 @@ export default function Component() {
         No Questions...
       </div>
     );
-  return (
-    <div className="pb-4">
-      <ul>
-      {wall
-        .slice()
-        .reverse()
-        .map((post) => (
-          <div className="mb-1 text-left">
-          <Link href={'answer/'+ post.id}>
-            <a>
-              <li className="p-5 mb-1 overflow-hidden text-black border-b hover:bg-gray-200">     
-              {post.question}
-              </li>
-            </a>
+  let searchedList: any[];
+    
+  const options: any =
+  {
+    caseSensitive: false,
+    keys: ["question", "answers.text"],
+    shouldSort : true,
+
+  }
+  const fuse = new Fuse(wall, options)
+  searchedList = fuse.search(search)
+
+  if(search.length === 0){
+    if(wall.length > MAXLINE){
+      wall.splice(MAXLINE, wall.length - MAXLINE)
+    }
+    return (
+      <div className="pb-4">
+        <ul>
+        {wall
+          .slice()
+          .reverse()
+          .map((post) => (
+            <div className="mb-5 text-left text-sm">
+            <hr/>
+            <Link href={'answer/'+ post.id}>
+              <a>
+                <li className="pb-5 pt-2 mb-1 overflow-hidden text-black hover:bg-gray-200">     
+                {post.question}
+                </li>
+              </a>
             </Link>
-            <Userinfo user={post.user} />
-          </div>
-        ))}
-        </ul>
-    </div>
-  );
+              <Userinfo name={post.user} address={post.eth_address} />
+              <hr />
+            </div>
+          ))}
+          </ul>
+      </div>
+    );
+  }
+  else{
+    if(searchedList.length > MAXLINE){
+      searchedList.splice(MAXLINE, searchedList.length - MAXLINE)
+    }
+    return (
+      <div className="pb-4">
+        <ul>
+        {searchedList
+          .slice()
+          .reverse()
+          .map((post) => (
+            <div className="mb-1 text-left">
+            <Link href={'answer/'+ post.item.id}>
+              <a>
+                <li className="p-5 mb-1 overflow-hidden text-black border-b hover:bg-gray-200">     
+                {post.item.question}
+                </li>
+              </a>
+              </Link>
+              <Userinfo name={post.item.user} address={post.item.user} />
+            </div>
+          ))}
+          </ul>
+      </div>
+    );
+  }
+
 }

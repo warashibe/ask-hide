@@ -68,7 +68,6 @@ dfx start
 
 ```bash
 dfx deploy wall
-dfx deploy profile
 npm run dev
 ```
 
@@ -81,7 +80,6 @@ Access on [http://localhost:3000](http://localhost:3000)
 
 ```bash
 dfx deploy wall
-dfx deploy profile
 npm run export
 dfx deploy ui
 ```

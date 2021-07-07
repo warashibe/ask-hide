@@ -3,13 +3,9 @@ import { useWeb3React } from "@web3-react/core";
 import { InjectedConnector } from "@web3-react/injected-connector";
 import { injected } from "@/eth/connectors";
 import { useEagerConnect, useInactiveListener } from "@/eth/hooks";
-import UserName from "@/components/header/Username";
-import EthAccount from "@/components/header/EthAccount";
-import BrickwallIcon from "@/svg/brick-wall.svg";
-import MetamaskIcon from "@/svg/metamask.svg";
-import AskBtn from "@/components/header/AskBtn"
+import EthAccount from "@/components/EthAccount";
+import AskBtn from "@/components/AskBtn"
 import Link from "next/link";
-import ClearBtn from "@/components/ClearBtn"
 
 export default function Component() {
   const {
@@ -47,25 +43,44 @@ export default function Component() {
       : "bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-green-900");
 
   return (
-    <nav>
-      <div className="px-2 py-2 mx-auto max-w-7xl sm:px-6 lg:px-8 sm:py-6 lg:py-6">
-        <div className="relative flex items-center justify-between">
-          <div className="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
-            <div className="flex items-center flex-shrink-0 text-3xl font-bold text-blue-500 ">
-                <Link href="/">ASK HiÐΞ β　on Dfinity</Link>
-            </div>
-            <div className="hidden sm:block sm:ml-6 sm:w-full ">
-              <div className="flex items-center justify-end h-full">
+    <div>    
+      <header className="flex justify-between itens-center h-16 px-8">
+            <p className="flex items-center text-3xl font-bold text-blue-500 justfy-start">
+                <Link href="/">ASK HiÐΞ</Link>
+            </p>
+
+              <div className="flex items-center justify-ends">
                 <div>
                   <AskBtn />                  
-                  <EthAccount />
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      </header>
       <hr className="border-1"/>
-    </nav>
+    </div>
   );
+
+
+  // return (
+  //   <div>    
+  //     <div className="px-2 py-2 mx-auto max-w-7xl sm:px-6 lg:px-8 sm:py-6 lg:py-6">
+  //       <div className="relative flex warap items-center justify-between">
+  //         <div className="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
+  //           <div className="flex items-center flex-shrink-0 text-3xl font-bold text-blue-500 ">
+  //               <Link href="/">ASK HiÐΞ</Link>
+  //           </div>
+  //           <div className="hidden sm:block sm:ml-3 sm:w-full">
+  //             <div className="flex items-center justify-end h-full">
+  //               <div>
+  //                 <AskBtn />                  
+  //                 <EthAccount />
+  //               </div>
+  //             </div>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </div>
+  //     <hr className="border-1"/>
+  //     </div>
+  // );
+
 }

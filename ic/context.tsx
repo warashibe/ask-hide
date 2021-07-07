@@ -39,13 +39,6 @@ export function useICContextValues(): IC {
     _setActors(createActors(identity));
   }, [identity]);
 
-  React.useEffect(() => {
-    if (!actors) return;
-    actors.profile.getOwnPrincipalId().then((principal: Principal) => {
-      _setPrincipal(principal);
-    });
-  }, [actors]);
-
   const loadIdentity = useCallback(
     (account: string) => {
       const identity = loadSavedIdentity(account);

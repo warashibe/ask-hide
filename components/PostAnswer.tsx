@@ -2,6 +2,7 @@ import React from "react";
 import { createAnonymousActors } from "@/ic/actor";
 import Spinner from "@/components/Spinner";
 import { useWeb3React } from "@web3-react/core";
+import EthAccount from "@/components/EthAccount";
 
 interface Props {
   id: string;
@@ -67,29 +68,36 @@ export default function Component({id}: Props)
         onChange={handlePostChange}
         value={post}
       ></textarea>
-           <div className="flex items-center justify-start h-full">
+           
+      <div className="flex items-center h-full">
       <textarea className="w-50 h-10 mb-5 px-2 py-1 text-gray-700 placeholder-gray-600 border rounded-sm focus:shadow-outline flex-none"
         placeholder=" Write name"
         disabled={loading}
         onChange={handleNameChange}
         value={name}
       ></textarea>
+      </div>
       {(account) &&(
-        <label htmlFor="useEthAddressCheckBox" className="mb-5 px-7">
-          Add Ethereum Address
+        <div className= "mb-3">
           <input
-            className = "mb-1 w-5 h-5 ml-3"
+            className = "mb-1 w-3 h-3 ml-3 items-center mx-2"
             type="checkbox"
             value="contain Eth Address"
             name = "useEthAddressCheckBox"
             checked = {useEthAdd}
             onChange ={handleCheckBoxChange}
-        ></input>
-         </label>)
-      }
-      </div>
+          />
+          <label htmlFor="useEthAddressCheckBox" className="items-center mb-3 text-sm">
+          Add Ethereum Address
+          </label>
+          <div className="mx-4">
+          <EthAccount />
+          </div>
+        </div>
+      )}
+      
       <button onClick={handleSubmit}
-          className=" w-full mb-10 mt-5 p-4 px-8 text-xl font-semibold text-blue-900 uppercase bg-blue-300 rounded-sm hover:bg-yellow-200 disabled:opacity-50"
+          className=" w-2/3 mb-10 mt-5 p-4 px-8 text-xl font-semibold border border-blue-500 text-white uppercase bg-blue-500 rounded hover:bg-white hover:text-blue-500 disabled:opacity-50 flex mx-auto"
           type="submit"
           disabled={loading}
       > {loading ? (
@@ -104,7 +112,7 @@ export default function Component({id}: Props)
           <span className="text-red-500">🤖 Error</span>
         )
       ) : (
-        "Send"
+        <div className="flex mx-auto">Send</div>
       )}
       </button>
     </div>
