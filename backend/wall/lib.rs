@@ -4,9 +4,11 @@ use ic_cdk::storage;
 use ic_cdk::*;
 use ic_cdk_macros::*;
 use sha2::{Digest, Sha256};
+use std::collections::BTreeMap;
 
 type Wall = Vec<Post>;
 type Admins = Vec<Principal>;
+type Addresses = BTreeMap<String, String>;
 
 #[derive(Clone, Debug, CandidType, Deserialize)]
 struct Answer {
@@ -73,24 +75,26 @@ fn get_question(question_id: String) -> Post {
 fn write(input: String, name: String, eth_address: String) -> String {
     let answers = Vec::new();
     let idnew = get_id(&input);
+    let address_hash = get_id(&eth_address);
+
     let post = Post {
         id: idnew.clone(),
         user: name,
-        eth_address: eth_address,
+        eth_address: address_hash.clone(),
         question: input.clone(),
         answers: answers,
     };
-
-    let wall = storage::get_mut::<Wall>();
-    wall.push(post);
+    storage::get_mut::<Wall>().push(post);
+    storage::get_mut::<Addresses>().insert(address_hash, eth_address);
     idnew
 }
 
 #[update]
 fn add_answer(text: String, name: String, eth_address: String, question_id: String) -> () {
+    let address_hash = get_id(&eth_address);
     let answer = Answer {
         user: name,
-        eth_address: eth_address,
+        eth_address: address_hash.clone(),
         text,
     };
     let wall = storage::get_mut::<Wall>();
@@ -99,6 +103,7 @@ fn add_answer(text: String, name: String, eth_address: String, question_id: Stri
             post.answers.push(answer.clone())
         }
     }
+    storage::get_mut::<Addresses>().insert(address_hash, eth_address);
 }
 
 //Admin commands
@@ -184,7 +189,8 @@ fn delete_answer(question_id: String, answer_idx: usize) -> bool {
 fn pre_upgrade() {
     let wall = storage::get::<Wall>();
     let admins = storage::get::<Admins>();
-    storage::stable_save((wall, admins)).unwrap();
+    let addresses = storage::get::<Addresses>();
+    storage::stable_save((wall, admins, addresses)).unwrap();
     return;
 }
 
@@ -192,15 +198,21 @@ fn pre_upgrade() {
 fn post_upgrade() {
     let wall = storage::get_mut::<Wall>();
     let admins = storage::get_mut::<Admins>();
-    let res: Result<(Vec<Post>, Vec<Principal>), String> = storage::stable_restore();
+    let addresses = storage::get_mut::<Addresses>();
+    let res: Result<(Vec<Post>, Vec<Principal>, BTreeMap<String, String>), String> =
+        storage::stable_restore();
     match res {
-        Ok((old_posts, old_admins)) => {
+        Ok((old_posts, old_admins, old_addresses)) => {
             for post in old_posts {
                 wall.push(post);
             }
             for admin in old_admins {
                 admins.push(admin);
             }
+            for (k, v) in old_addresses {
+                addresses.insert(k, v);
+            }
+
             return;
         }
         Err(_) => return,

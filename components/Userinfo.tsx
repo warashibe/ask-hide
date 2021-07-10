@@ -13,14 +13,6 @@ export default function Component({ name, address}: Props) {
     <div className="text-sm text-blue-500">
       <UserIcon className="inline-block h-4 pb-1 mr-1" />
       {name}
-      <div
-        style={{ width: "12px", height: "12px" }}
-        className="inline-block ml-3 mr-1"
-      >
-        <Jazzicon address={address} />
-      </div>
-      {address.substring(0, 6)}...
-      {address.substring(address.length - 4)} {" "}
     </div>
   );
 }
