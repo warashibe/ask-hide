@@ -17,10 +17,11 @@ service : {
   "write": (question: text, name: text, eth_address: text) -> (text);
   "get_question": (questionId: text) -> (Post) query;
   "add_answer": (answer: text, name: text, eth_address: text, question_id: text) -> ();
-  "clear_all_data": () -> (bool);
   "add_admin": (principap: principal) -> (bool);
-  "clear_question": (question_id: text) -> (bool);
-  "get_admin_list": () -> (vec principal);
+  "get_admin_list": () -> (opt vec principal);
   "is_caller_admin": () -> (bool);
   "get_my_principal": () -> (principal);
+  "delete_all_data": () -> (bool);
+  "delete_question": (question_id: text) -> (bool);
+  "delete_answer": (question_id: text, answer_idx: nat64) -> (bool);
 }

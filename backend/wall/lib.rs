@@ -1,5 +1,6 @@
 use ic_cdk::export::candid::Principal;
 use ic_cdk::export::candid::{CandidType, Deserialize};
+use ic_cdk::storage;
 use ic_cdk::*;
 use ic_cdk_macros::*;
 use sha2::{Digest, Sha256};
@@ -27,44 +28,12 @@ struct Post {
 fn init() {
     let admins = storage::get_mut::<Admins>();
     admins.push(ic_cdk::caller());
-    //crate::println!("{:?}", ic_cdk::api::caller());
-}
-
-#[update]
-fn add_admin(principal: Principal) -> bool {
-    if !is_caller_admin() {
-        return false;
-    }
-    if is_admin(principal.clone()) {
-        return false;
-    }
-    let admin = storage::get_mut::<Admins>();
-    admin.push(principal);
-    true
 }
 
 #[query]
 fn get_my_principal() -> Principal {
     let p = ic_cdk::caller();
     p
-}
-
-#[query]
-fn get_admin_list() -> &'static Vec<Principal> {
-    storage::get::<Admins>()
-}
-
-#[query]
-fn is_caller_admin() -> bool {
-    is_admin(ic_cdk::caller())
-}
-
-#[query]
-fn is_admin(principal: Principal) -> bool {
-    crate::println!("{:?}", principal.clone());
-    let admins = storage::get::<Admins>();
-    crate::println!("{:?}", admins.clone());
-    admins.contains(&principal)
 }
 
 fn get_id(now_str: &String) -> String {
@@ -132,8 +101,43 @@ fn add_answer(text: String, name: String, eth_address: String, question_id: Stri
     }
 }
 
+//Admin commands
 #[update]
-fn clear_all_data() -> bool {
+fn add_admin(principal: Principal) -> bool {
+    if !is_caller_admin() {
+        return false;
+    }
+    if is_admin(principal.clone()) {
+        return false;
+    }
+    let admin = storage::get_mut::<Admins>();
+    admin.push(principal);
+    true
+}
+
+#[query]
+fn get_admin_list() -> Option<&'static Vec<Principal>> {
+    if !is_caller_admin() {
+        return None;
+    }
+    Some(storage::get::<Admins>())
+}
+
+#[query]
+fn is_caller_admin() -> bool {
+    is_admin(ic_cdk::caller())
+}
+
+#[query]
+fn is_admin(principal: Principal) -> bool {
+    crate::println!("{:?}", principal.clone());
+    let admins = storage::get::<Admins>();
+    crate::println!("{:?}", admins.clone());
+    admins.contains(&principal)
+}
+
+#[update]
+fn delete_all_data() -> bool {
     if !is_caller_admin() {
         return false;
     }
@@ -142,47 +146,63 @@ fn clear_all_data() -> bool {
     true
 }
 #[update]
-fn clear_question(question_id: String) -> bool {
+fn delete_question(question_id: String) -> bool {
     if !is_caller_admin() {
         return false;
     }
     let wall = storage::get_mut::<Wall>();
     let idx: usize;
-    match wall.iter().position(|p| *p.question == question_id) {
+    match wall.iter().position(|p| p.id == question_id) {
         Some(v) => idx = v,
         None => return false,
     }
+    crate::println!("{:?}", idx.clone());
     wall.remove(idx);
     true
 }
 
+#[update]
+fn delete_answer(question_id: String, answer_idx: usize) -> bool {
+    if !is_caller_admin() {
+        return false;
+    }
+    let wall = storage::get_mut::<Wall>();
+    let idx: usize;
+    match wall.iter().position(|p| p.id == question_id) {
+        Some(v) => idx = v,
+        None => return false,
+    }
+
+    if wall.clone()[idx].answers.len() > answer_idx {
+        wall[idx].answers.remove(answer_idx);
+        return true;
+    }
+    false
+}
+
 #[pre_upgrade]
 fn pre_upgrade() {
-    let wall = get();
-    let admins = get_admin_list();
-    storage::stable_save((wall,)).unwrap();
-    storage::stable_save((admins,)).unwrap();
+    let wall = storage::get::<Wall>();
+    let admins = storage::get::<Admins>();
+    storage::stable_save((wall, admins)).unwrap();
     return;
 }
 
 #[post_upgrade]
 fn post_upgrade() {
-    // let wall = storage::get_mut::<Wall>();
-    // let res: Result<(Vec<Post>,), String> = storage::stable_restore();
-    // match res {
-    //     Ok((old_posts,)) => {
-    //         for post in old_posts {
-    //             wall.push(post);
-    //         }
-    //         return;
-    //     }
-    //     Err(_) => return,
-    // }
-    let (wall_r, admins_r): (Vec<Post>, Vec<Principal>) = storage::stable_restore().unwrap();
-    for p in wall_r {
-        storage::get_mut::<Wall>().push(p);
-    }
-    for a in admins_r {
-        storage::get_mut::<Admins>().push(a);
+    let wall = storage::get_mut::<Wall>();
+    let admins = storage::get_mut::<Admins>();
+    let res: Result<(Vec<Post>, Vec<Principal>), String> = storage::stable_restore();
+    match res {
+        Ok((old_posts, old_admins)) => {
+            for post in old_posts {
+                wall.push(post);
+            }
+            for admin in old_admins {
+                admins.push(admin);
+            }
+            return;
+        }
+        Err(_) => return,
     }
 }
