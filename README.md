@@ -2,7 +2,8 @@
 
 This program developped based by haruxx
 
-Thanks to Kristofer Lund, kristofer@fmckl.se. Really helpful to understand ICP and Ethereum connections with React/NEXT envirement
+Thanks to Kristofer Lund, kristofer@fmckl.se. Really helpful to understand ICP and Ethereum connections with React/NEXT envirement. His code is this
+[https://github.com/kristoferlund/ic-wall](https://github.com/kristoferlund/ic-wall)
 
 ## Purpose
 
