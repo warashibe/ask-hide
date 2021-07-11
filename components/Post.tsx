@@ -1,7 +1,6 @@
 import React from "react";
 import Spinner from "@/components/Spinner";
 import { useWeb3React } from "@web3-react/core";
-import router from "next/router";
 import { createAnonymousActors } from "@/ic/actor";
 import EthAccount from "@/components/EthAccount";
 
@@ -50,7 +49,7 @@ export default function Component() {
       .write(post, name, accountInput)
       .then(() => {
         setSuccess(true);
-        router.push("/");
+        window.location.href ='/';
       })
       .catch((error: any) => {
         setSuccess(false);
@@ -98,19 +97,19 @@ export default function Component() {
          )
       }
       <button onClick={handleSubmit}
-          className=" w-2/3 mb-10 p-4 text-xl text-white uppercase border border-blue-500 bg-blue-500 rounded-sm hover:bg-white hover:text-blue-500 disabled:opacity-50 flex mx-auto"
+          className=" w-2/3 mb-10 p-4 text-xl text-white uppercase items-center border border-blue-500 bg-blue-500 rounded-sm hover:bg-white hover:text-blue-500 disabled:opacity-50 flex mx-auto"
           type="submit"
           disabled={loading}
       > {loading ? (
-        <>
+        <div className="flex mx-auto">
           <Spinner />
           Sendingss
-        </>
+        </div>
       ) : finished ? (
         success ? (
-          "👍👍👍"
+          "OK"
         ) : (
-          <span className="text-red-500">🤖 Error</span>
+          <span className="text-red-500">Error</span>
         )
       ) : (
         <div className="flex mx-auto">Send</div>

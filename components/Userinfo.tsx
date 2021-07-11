@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function Component({ name, address}: Props) {
-  if (!name) return null;
+  if (!name) name = "ghost";
   return (
     <div className="text-sm text-blue-500">
       <UserIcon className="inline-block h-4 pb-1 mr-1" />

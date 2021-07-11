@@ -17,12 +17,10 @@ export default function ask() {
 
       <main>
       <div className="text-center text-red-500 m-2">
-          ベーター運用中
         </div>
-        <div className="h2 text-center text-2xl mb-5"> きいてみよう </div>
+        <div className="h2 text-center text-2xl mb-5"> You can ask about HiÐΞ </div>
         <div className="w-full leading-normal text-black">
             <div className="text-xl wall-container">
-              <div className="mb-3 ml-2s text-sm">質問は？</div>
                   <Post />
             </div>
           </div>

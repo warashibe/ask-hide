@@ -33,3 +33,4 @@ yarn-error.log*
 /.dfx
 /target
 
+canister_ids.json

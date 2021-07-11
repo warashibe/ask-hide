@@ -34,10 +34,10 @@ export default function Home() {
           </div>
         </div>
         <div className="text-center text-red-500 mb-5">
-          ベーター運用中<br/>
-          不定期に停止する可能性があります<br/>
+          ASK HiDE is QA service for <a href="http://hide.ac">HiÐΞ</a><br/>
+          Beta Operation<br/>
         </div>
-        <form className="w-2/3 flex border border-gray-700 rounded-full primary-bg-600 container mx-auto" id="search-bar" onSubmit={handleSubmit}>
+        <form className="w-2/3 max-w-md flex border border-gray-700 rounded-full primary-bg-600 container mx-auto" id="search-bar" onSubmit={handleSubmit}>
           <span className="inline-flex items-center px-3 text-sm my-2 sm:ml-2">
             <span>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
