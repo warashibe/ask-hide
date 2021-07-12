@@ -8,9 +8,9 @@ interface Props {
 
 export default function Component({Num}: Props) {
   return (
-    <div className="text-sm text-blue-500">
-      <FontAwesomeIcon icon={faComment} className="inline-block h-4 pb-1 mr-2"/>
-      {Num}
+    <div className="text-sm text-blue-500 items-center">
+      <FontAwesomeIcon icon={faComment} className="inline-block h-3 mr-1 align-middle"/>
+        {Num}
     </div>
   );
 }

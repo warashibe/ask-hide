@@ -49,19 +49,24 @@ export default function Component({search} : Props) {
           .slice()
           .reverse()
           .map((post) => (
-            <div className="mb-5 text-left text-sm">
-            <hr/>
+            <div className="mb-3 text-left text-md">
             <Link href={'answer/'+ post.id}>
               <a>
-                <li className="pb-5 pt-2 mb-1 overflow-hidden text-black hover:bg-gray-200">     
-                {post.question}
+                <li className=" pt-2 mb-1 overflow-hidden text-black hover:bg-gray-200">     
+                <div className="pb-2 ml-2">
+                  {post.question}
+                </div>
+                <div className="item-center flex ml-2">
+                  <div className="mr-2">
+                  <AnswerNum Num={post.answers.length} />
+                  </div>  
+                  <Userinfo name={post.user}/>
+                </div>
                 </li>
               </a>
             </Link>
-              <Userinfo name={post.user} />
-              <AnswerNum Num={post.answers.length} />
-              <hr />
-            </div>
+            <hr />
+          </div>
           ))}
           </ul>
       </div>
