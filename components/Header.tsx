@@ -46,7 +46,7 @@ export default function Component() {
     <div>    
       <header className="flex justify-between itens-center h-16 px-8">
             <p className="flex items-center text-3xl font-bold text-blue-500 justfy-start">
-                <Link href="/">ASK HiÐΞ</Link>
+                <Link href="/"><a>ASK HiÐΞ</a></Link>
             </p>
 
               <div className="flex items-center justify-ends">

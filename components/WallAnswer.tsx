@@ -37,7 +37,7 @@ export default function Component({id}: Props)
             {Question.question}
           </div>
           <hr/>
-          <Userinfo name={Question.user} address={Question.eth_address} />
+          <Userinfo name={Question.user} />
         </div>
         <div className="pb-4 mb-2">
           <div className="text-xs font-bold">
@@ -50,7 +50,7 @@ export default function Component({id}: Props)
                 <div className="p-2 mb-2 overflow-hidden text-black border border-black-300 roundec-sm  text-xs">
                       <a>{answer.text}</a>
                 </div>
-                <Userinfo name={answer.user} address={answer.eth_address} />
+                <Userinfo name={answer.user} />
               </div>
             ))}
         </div>

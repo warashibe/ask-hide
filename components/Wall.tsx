@@ -3,6 +3,7 @@ import { getWall } from "@/store/actions/wall";
 import { createAnonymousActors } from "@/ic/actor";
 import Linkify from "linkifyjs/react";
 import Userinfo from "@/components/Userinfo";
+import AnswerNum from "@/components/AnswerNum";
 import Link from "next/link";
 import Fuse from "fuse.js";
 
@@ -57,7 +58,8 @@ export default function Component({search} : Props) {
                 </li>
               </a>
             </Link>
-              <Userinfo name={post.user} address={post.eth_address} />
+              <Userinfo name={post.user} />
+              <AnswerNum Num={post.answers.length} />
               <hr />
             </div>
           ))}
@@ -84,7 +86,8 @@ export default function Component({search} : Props) {
                 </li>
               </a>
               </Link>
-              <Userinfo name={post.item.user} address={post.item.user} />
+              <Userinfo name={post.item.user} />
+              <AnswerNum Num={post.item.answers.length} />
             </div>
           ))}
           </ul>

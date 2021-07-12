@@ -4,10 +4,9 @@ import { Jazzicon } from "@ukstv/jazzicon-react";
 
 interface Props {
   name: string;
-  address: string
 }
 
-export default function Component({ name, address}: Props) {
+export default function Component({ name}: Props) {
   if (!name) name = "ghost";
   return (
     <div className="text-sm text-blue-500">
