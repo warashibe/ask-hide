@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Header from "@/components/Header";
 import Wall from "@/components/Wall";
+import Helmet from "react-helmet";
 
 export default function Home() {
   const [search, setSearch] = React.useState("");
@@ -18,12 +19,18 @@ export default function Home() {
  
   return (
     <div className="bg-white-500">
-      <Head>
-        <title>ASK HiÐΞ</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Header />
-
+      <Helmet>
+        <title>ASK HiÐΞ</title> 
+        <link rel="icon" href="/favicon.ico"/>
+        <meta name="twitter:card" content="summary_large_image" /> 
+        <meta name="twitter:site" content="@harukatarotaro" />
+        <meta property="og:url" content="https://kfbls-oiaaa-aaaah-qaddq-cai.raw.ic0.app/"/>
+        <meta property="og:title" content="ASK HiÐΞ" />
+        <meta property="og:description" content="ASK HiDE is QA service for HiÐΞ
+Beta Operation"/>
+        <meta property="og:image" content="https://kfbls-oiaaa-aaaah-qaddq-cai.raw.ic0.app/ask.png" />
+      </Helmet>
+      <Header/>
       <main>
         <div className="w-2/3 flex container mx-auto">
           <img src="ask.png" className="mt-6 mx-auto"/>

@@ -6,15 +6,15 @@ export default function Component() {
 
   if (account){
     return (
-      <div className="inline-block py-1.5 text-sm text-blue-500 lowercase items-center">
+      <div className="inline-block px-3 py-2 mr-4 text-base font-semibold text-blue-700 uppercase bg-white-100 rounded-lg">
         <div
-          style={{ width: "12px", height: "12px" }}
+          style={{ width: "15px", height: "15px" }}
           className="inline-block mr-2"
         >
           <Jazzicon address={account} />
         </div>
         {account.substring(0, 6)}...
-        {account.substring(account.length - 6)} {" "}
+        {account.substring(account.length - 4)} {" "}
       </div>
     );
   }

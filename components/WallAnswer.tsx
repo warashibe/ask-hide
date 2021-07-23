@@ -70,6 +70,7 @@ export default function Component({id}: Props)
           {Question.question}
         </div>
         <hr/>
+          <Userinfo name={Question.user} />
       </div>
       
       <div className="pb-4">
