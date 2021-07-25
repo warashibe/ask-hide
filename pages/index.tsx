@@ -36,13 +36,12 @@ Beta Operation"/>
           <img src="ask.png" className="mt-6 mx-auto"/>
         </div>
         <div className="text-center">
-          <div className="text-6xl mb-10">
+          <div className="text-6xl mb-10 text-blue-500">
           ASK HiÐΞ
           </div>
         </div>
-        <div className="text-center text-red-500 mb-5">
-          ASK HiDE is QA service for <a href="http://hide.ac">HiÐΞ</a><br/>
-          Beta Operation<br/>
+        <div className="text-center mb-5">
+          ASK HiDE is QA service for <a href="http://hide.ac" className="text-blue-500">HiÐΞ</a>
         </div>
         <form className="w-2/3 max-w-md flex border border-gray-700 rounded-full primary-bg-600 container mx-auto" id="search-bar" onSubmit={handleSubmit}>
           <span className="inline-flex items-center px-3 text-sm my-2 sm:ml-2">

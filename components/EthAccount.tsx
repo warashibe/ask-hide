@@ -21,8 +21,8 @@ export default function Component() {
   else
   {
     return (
-      <div className="px-3 py-1.5 text-blue-500 text-sm border border-blue-500 bg-white-500 rounded">
-        No Address founded
+      <div className="inline-block px-3 py-2 mr-4 text-blue-500 text-sm border border-blue-500 bg-white-500 rounded">
+        No Address
       </div>
     );
   }

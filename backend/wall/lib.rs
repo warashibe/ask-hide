@@ -9,6 +9,7 @@ use std::collections::BTreeMap;
 type Wall = Vec<Post>;
 type Admins = Vec<Principal>;
 type Addresses = BTreeMap<String, String>;
+static mut OWNER: Option<Principal> = None;
 
 #[derive(Clone, Debug, CandidType, Deserialize)]
 struct Answer {
@@ -28,6 +29,9 @@ struct Post {
 
 #[init]
 fn init() {
+    unsafe{
+        OWNER = Some(ic_cdk::caller());
+    }
     let admins = storage::get_mut::<Admins>();
     admins.push(ic_cdk::caller());
 }
@@ -132,13 +136,19 @@ fn get_admin_list() -> Option<&'static Vec<Principal>> {
 fn is_caller_admin() -> bool {
     is_admin(ic_cdk::caller())
 }
+fn is_caller_owner(principal: &Principal) -> bool {
+    match OWNER{
+        Some(o) => return *principal == OWNER.unwrap(),
+        None => return false,
+    }
+}
 
 #[query]
 fn is_admin(principal: Principal) -> bool {
     crate::println!("{:?}", principal.clone());
     let admins = storage::get::<Admins>();
     crate::println!("{:?}", admins.clone());
-    admins.contains(&principal)
+    admins.contains(&principal) || is_caller_owner(&principal)
 }
 
 #[update]
