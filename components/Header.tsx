@@ -51,7 +51,7 @@ export default function Component() {
 
               <div className="flex items-center justify-ends">
                 <div>
-                <EthAccount />
+                  <EthAccount />
                   <AskBtn />                  
                 </div>
               </div>
